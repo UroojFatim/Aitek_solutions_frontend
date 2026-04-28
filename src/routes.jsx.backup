@@ -1,0 +1,216 @@
+import {
+  HomeIcon,
+  MegaphoneIcon,
+  UsersIcon,
+  UserIcon,
+} from "@heroicons/react/24/solid";
+import {
+  Home,
+  Notifications,
+  Websites,
+  Onboarding,
+  Coaching,
+  Billing,
+  Accounts,
+  InformationTechnology,
+  Leads,
+  SmileSupport,
+  WolfLabServices,
+  BrandEstablishment,
+  ConsultCoaching,
+  SurgicalObservation,
+  ContentCreation,
+  TrustedClinicalIt,
+} from "@/pages/dashboard";
+import { SignIn, ResetPassword } from "@/pages/auth";
+import { Accounts as AdminAccounts, Dashboard as ClientDashboard, Marketing as AdminMarketing, AdminAssignPipeline, AdminDashboard, AdminsAudit, AdminsManagement } from "@/pages/admin";
+import { ClipboardListIcon, LayoutDashboardIcon } from "lucide-react";
+import LeadGeneration from "./pages/dashboard/LeadGeneration";
+
+const icon = {
+  className: "w-5 h-5 text-inherit",
+};
+
+export const routes = [
+  // ADMIN ROUTES
+  {
+    layout: "admin",
+    pages: [
+      {
+        icon: <LayoutDashboardIcon {...icon} />,
+        name: "Admin Dashboard",
+        path: "/home",
+        element: <AdminDashboard />,
+      },
+      {
+        icon: <UserIcon {...icon} />,
+        name: "Client",
+        collapsible: true,
+        pages: [
+          {
+            icon: <UserIcon {...icon} />,
+            name: "Client",
+            path: "/client",
+            element: <AdminAccounts />,
+          },
+          {
+            icon: <LayoutDashboardIcon {...icon} />,
+            name: "CRM Account Mapping",
+            path: "/CRM-Account-Mapping",
+            element: <AdminAssignPipeline />,
+          },
+        ]
+      },
+
+      {
+        icon: <HomeIcon {...icon} />,
+        name: "Client Dashboard",
+        path: "/client-dashboard",
+        element: <ClientDashboard />,
+      },
+      {
+        icon: <MegaphoneIcon {...icon} />,
+        name: "Marketing",
+        path: "/marketing",
+        element: <AdminMarketing />,
+      },
+      {
+        icon: <UsersIcon {...icon} />,
+        name: "Admin Management",
+        collapsible: true,
+        pages: [
+          {
+            name: "Admin Accounts",
+            path: "/admin_management",
+            element: <AdminsManagement />,
+            icon: <UsersIcon {...icon} />,
+          },
+          {
+            name: "Admins Audit",
+            path: "/Admins_Audit",
+            element: <AdminsAudit />,
+            icon: <ClipboardListIcon {...icon} />,
+          },
+        ],
+      },
+    ],
+  },
+
+  // DASHBOAES ROUTES
+  {
+    layout: "dashboard",
+    pages: [
+      {
+        name: "Dashboard",
+        path: "/home",
+        element: <Home />,
+      },
+      {
+        name: "Onboarding",
+        path: "/onboarding",
+        element: <Onboarding />,
+      },
+      {
+        name: "Lead generation",
+        path: "/lead-generation",
+        element: <LeadGeneration />,
+      },
+      {
+        name: "Lead Management",
+        path: "/lead-management",
+        element: <Leads />,
+      },
+      // {
+      //   icon: <MegaphoneIcon {...icon} />,
+      //   name: "Marketing",
+      //   collapsible: true,
+      //   pages: [
+      //     {
+      //       icon: <Bars3BottomRightIcon {...icon} />,
+      //       name: "Websites",
+      //       path: "/websites",
+      //       element: <Websites />,
+      //     },
+
+      //   ],
+      // },
+      {
+        name: "24/7 Smile Support",
+        path: "/24x7-smile-support",
+        element: <SmileSupport />,
+      },
+      // {
+      //   icon: <CpuChipIcon {...icon} />,
+      //   name: "Information Technology",
+      //   path: "/information-technology",
+      //   element: <InformationTechnology />,
+      // },
+      // {
+      //   icon: <DocumentChartBarIcon {...icon} />,
+      //   name: "Practice Growth",
+      //   path: "/Practice-Growth",
+      //   element: <Coaching />,
+      // },
+      // {
+      //   icon: <InboxIcon {...icon} />,
+      //   name: "Billing",
+      //   path: "/billing",
+      //   element: <Billing />,
+      // },
+      {
+        name: "Wolf Lab Services",
+        path: "/wolf-lab-services",
+        element: <WolfLabServices />,
+      },
+      {
+        name: "Brand Establishment",
+        path: "/brand-establishment",
+        element: <BrandEstablishment />,
+      },
+      {
+        name: "Consult Coaching",
+        path: "/consult-coaching",
+        element: <ConsultCoaching />,
+      },
+      {
+        name: "Surgical Observation",
+        path: "/surgical-observation",
+        element: <SurgicalObservation />,
+      },
+      {
+        name: "Content Creation",
+        path: "/content-creation",
+        element: <ContentCreation />,
+      },
+      {
+        name: "Trusted Clinical It",
+        path: "/trusted-clinical-it",
+        element: <TrustedClinicalIt />,
+        },
+      {
+        name: "Account",
+        path: "/account",
+        element: <Accounts />,
+      },
+    ],
+  },
+
+  // AUTH ROUTES
+  {
+    layout: "auth",
+    pages: [
+      {
+        name: "sign in",
+        path: "/sign-in",
+        element: <SignIn />,
+      },
+      {
+        name: "reset password",
+        path: "/reset-password",
+        element: <ResetPassword />,
+      },
+    ],
+  },
+];
+
+export default routes;

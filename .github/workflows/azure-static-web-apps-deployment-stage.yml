@@ -1,0 +1,61 @@
+
+name: Azure Static Web Apps CI/CD
+
+on:
+  push:
+    branches:
+      - stage
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches:
+      - stage
+
+jobs:
+  build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+    runs-on: ubuntu-latest
+    name: Build and Deploy Job
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          lfs: false
+      
+      - name: Debug - List files
+        run: |
+          echo "Current directory:"
+          pwd
+          echo "Files in root:"
+          ls -la
+          echo "Package.json exists?"
+          ls -la package.json
+      
+      - name: Build And Deploy
+        id: builddeploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_GRAY_MOSS_02882AF10 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: "upload"
+          ###### Repository/Build Configurations ######
+          app_location: "/"           # React app in root
+          api_location: ""            # No API
+          output_location: "dist"     # Vite builds to 'dist' folder
+          skip_app_build: false       # Let Azure handle build
+        env:
+          VITE_API_URL: "https://devapi.wolfofarches.com/api"
+          VITE_BASE_GHL_URL: "https://rest.gohighlevel.com/v1/"
+          VITE_GHL_API_KEY: ${{ secrets.GHL_API_KEY }}
+          ###### End of Repository/Build Configurations ######
+
+  close_pull_request_job:
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    name: Close Pull Request Job
+    steps:
+      - name: Close Pull Request
+        id: closepullrequest
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_GRAY_MOSS_02882AF10 }}
+          action: "close"

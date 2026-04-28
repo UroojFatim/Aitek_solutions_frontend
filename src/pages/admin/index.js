@@ -1,0 +1,12 @@
+export { default as Accounts } from "@/pages/admin/accounts";
+export { default as Marketing } from "@/pages/admin/marketing";
+export { default as Dashboard } from "@/pages/admin/client_dashboard/Dashboard";
+export { default as AdminAssignPipeline } from "@/pages/admin/AdminAssignPipeline";
+export { default as AdminDashboard } from "@/pages/admin/AdminDashboard";
+export { default as AdminsManagement } from "@/pages/admin/AdminsManagement";
+export { default as AdminsAudit } from "@/pages/admin/AdminsAudit";
+export { default as AdminAccountSheetPage } from "@/pages/admin/AdminAccountSheetPage";
+export { default as GhlPipelines } from "@/pages/admin/GHL/index";
+export { default as BrandEstablishment } from "@/pages/admin/BrandEstablishment";
+export { default as AdminUserManagement } from "@/pages/admin/AdminUserManagement";
+export { default as AdminClientsView } from "@/pages/admin/Clients_View/AdminClientsView";
